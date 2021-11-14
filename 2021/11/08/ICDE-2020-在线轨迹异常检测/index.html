@@ -20,17 +20,17 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="分享一下阅读的一篇关于异常轨迹检测的文章《Online Anomalous Trajectory Detection with Deep Generative Sequence Modeling》，文章发表在ICDE 2020上。">
+  <meta name="description" content="分享一下最近阅读的一篇关于异常轨迹检测的文章《Online Anomalous Trajectory Detection with Deep Generative Sequence Modeling》，文章发表在ICDE 2020上。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ICDE 2020  Online Anomalous Trajectory Detection with Deep Generative Sequence Modeling">
 <meta property="og:url" content="http://example.com/2021/11/08/ICDE-2020-%E5%9C%A8%E7%BA%BF%E8%BD%A8%E8%BF%B9%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/index.html">
 <meta property="og:site_name" content="WCH&#39;s Blog">
-<meta property="og:description" content="分享一下阅读的一篇关于异常轨迹检测的文章《Online Anomalous Trajectory Detection with Deep Generative Sequence Modeling》，文章发表在ICDE 2020上。">
+<meta property="og:description" content="分享一下最近阅读的一篇关于异常轨迹检测的文章《Online Anomalous Trajectory Detection with Deep Generative Sequence Modeling》，文章发表在ICDE 2020上。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2021/11/08/vDc1zAeuYqTLMEC.png">
 <meta property="og:image" content="https://i.loli.net/2021/11/08/QA1DNIueBFx4kwE.png">
 <meta property="article:published_time" content="2021-11-07T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-11-08T15:03:41.499Z">
+<meta property="article:modified_time" content="2021-11-14T05:49:47.847Z">
 <meta property="article:author" content="WCH">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.loli.net/2021/11/08/vDc1zAeuYqTLMEC.png">
@@ -179,10 +179,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-11-08 00:00:00 / 修改时间：23:03:41" itemprop="dateCreated datePublished" datetime="2021-11-08T00:00:00+08:00">2021-11-08</time>
+              <time title="创建时间：2021-11-08 00:00:00" itemprop="dateCreated datePublished" datetime="2021-11-08T00:00:00+08:00">2021-11-08</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-14 13:49:47" itemprop="dateModified" datetime="2021-11-14T13:49:47+08:00">2021-11-14</time>
+              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -202,7 +208,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>分享一下阅读的一篇关于异常轨迹检测的文章《Online Anomalous Trajectory Detection with Deep Generative Sequence Modeling》，文章发表在ICDE 2020上。</p>
+        <p>分享一下最近阅读的一篇关于异常轨迹检测的文章《Online Anomalous Trajectory Detection with Deep Generative Sequence Modeling》，文章发表在ICDE 2020上。</p>
 <span id="more"></span>
 <h3 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h3><p>随着移动设备和传感器技术的发展，大量的位置痕迹以前所未有的速度产生。在城市中，每天有数以万计的出租车穿行，生成了数量巨大的轨迹。这些轨迹包含了丰富的信息，包括人流，交通的移动。有了这些大规模轨迹数据后，在很多实际场景中，轨迹的异常检测就成了就成了一个重要的问题。比如说，很多游客是出租车诈骗的受害者，出租车司机通过绕路来收取额外的费用。</p>
 <p>如果一条轨迹在一段行程中不遵循正常的路线，那么这条轨迹就被认为是异常轨迹。如图1中所示，假设在出发地 $S_1$ 和目的地 $D_1$ 之间有一些轨迹，它们大多数遵循 $r_1$ 和 $r_2$ 两条路线，我们可以认为轨迹 $T_1$ 为一条异常轨迹因为它和  $r_1$ 和 $r_2$ 都不相同。另外在出发地 $S_2$ 和目的地 $D_2$ 之间正常路线为 $r_3$ 和 $r_4$ ，但是异常轨迹 $T_2$ 从路线 $r_3$ 转换到 $r_4$ ,这说明路径 $r_3$ 的 $r_3’$ 路段可能出现如道路建设，交通事故的异常。</p>
@@ -216,7 +222,7 @@
     </center>
 </div>
 
-<p>异常轨迹检测主要有两个难点：一是正常路线的发现，二是高效的在线检测。在这篇文章中，作者采用了高斯混合变分序列自动编码器(GM-VSAE) 来解决这个问题。为了发现正常路线，作者提出了一个推理网络，采用 RNN 对轨迹的序列信息进行编码，将每条轨迹的路线表示成一个向量，同时学习了一个高斯混合模型来表示正常路线的概率分布。为了能够实现高效的在线检测，作者设计了一个基于生成模型的方案 <em>detection-via-generation</em> ，通过计算一条轨迹由正常路线产生的可能性来检测异常轨迹。</p>
+<p>异常轨迹检测主要有两个难点：一是正常路线的发现，二是高效的在线检测。在这篇文章中，作者采用了高斯混合变分序列自动编码器( GM-VSAE) 来解决这个问题。为了发现正常路线，作者提出了一个推理网络，采用 RNN 对轨迹的序列信息进行编码，将每条轨迹的路线表示成一个向量，同时学习了一个高斯混合模型来表示正常路线的概率分布。为了能够实现高效的在线检测，作者设计了一个基于生成模型的方案 <em>detection-via-generation</em> ，通过计算一条轨迹由正常路线产生的可能性来检测异常轨迹。</p>
 <h3 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h3><p>一条轨迹可以定义为按时间顺序排列的点： $P=\left\{p_1→p_2→…→p_n \right\}$，其中 $p_i$ 表示 GPS 坐标。用 $p(r)$ 来表示路线 $r$ 被轨迹经过的概率， $p(r)$ 越高表示 $r$ 越可能是一条正常路径，并且定义一条轨迹 $T$ 遵循正常路线的概率为 $p(T|r_*)$，概率越低表示路径越可能是异常轨迹。</p>
 <p>我们的目标主要是：$1.$ 对 $p(r)$ 建模来发现正常路径；$2.$ 对 $p(T|r_*)$ 建模来检测异常轨迹。具体来说，首先学习一个 GM-VSAE 模型，推断并用向量来表示轨迹的路线，然后建立路线概率分布的模型，对于给定的轨迹，生成一些路径。在学习 GM-VSAE 模型的基础上，通过路线的概率分布来找到正常的路线，通过计算一条轨迹由正常路线生成的概率来检测是否为异常轨迹。</p>
 <h3 id="GM-VSAE-模型"><a href="#GM-VSAE-模型" class="headerlink" title="GM-VSAE 模型"></a>GM-VSAE 模型</h3><p>GM-VSAE 模型由三部分组成：推理网络、路线的概率分布和生成网络。</p>
@@ -229,6 +235,21 @@
     图2 GM-VSAE总体结构    <!--标题-->
     </center>
 </div>
+
+
+
+<p>其中，推理网络用来将一条轨迹 $T$ 表示成一个连续隐空间的向量，路线的概率分布可以表示路线正常的可能性，生成网络通过给定的路线来生成轨迹。</p>
+<h5 id="潜在路线推理"><a href="#潜在路线推理" class="headerlink" title="潜在路线推理"></a>潜在路线推理</h5><p>在我们进行轨迹异常检测之前，我们需要推理和表示轨迹的路线。作者提出了一个推理网络 $q_\phi (\mathbf{r} |T)$，对于一条轨迹 $T = (t_1, t_2, …, t_n)$，用向量的形式来表示潜在路线 $\mathbf{r} _T\in \mathbb{R} ^M$ 。其中 $\phi $ 用来表示网络中的参数，$M$ 表示路线向量的维度。为了能够接受不同长度的轨迹作为输入，用 RNN 来实现网络 $q_\phi (\mathbf{r} |T)$，对于第 $i$ 步，推理 RNN 读取 $t_i$ 并产生隐藏状态 $\mathbf{h} _i\in \mathbb{R} ^k$ ：</p>
+<script type="math/tex; mode=display">
+\mathbf{h} _i=f_1(t_i,\mathbf{h} _{i-1})\quad i=1,2,...,n</script><p>$f_1$ 是一个需要学习的非线性函数如 LSTM 或 GRU。同时，轨迹 $T$ 会存在不确定性和噪声，因此在推断 $\mathbf{r} _T$ 时候采用了正态分布：</p>
+<script type="math/tex; mode=display">
+\mathbf{r} _T\sim q_\phi (\mathbf{r} |T)=N(\mathbf{\mu} _T,{\mathbf{\sigma} }_T^2\mathbf{I}  )</script><p>其中 $\mathbf{\mu} _T\in \mathbb{R} ^M$ , ${\mathbf{\sigma} }_T^2\in \mathbb{R} ^M$，$\{\mathbf{\mu} _T,\mathbf{\sigma}_T^2 \}=g_1(\mathbf{h} _n)$。$g_1(\cdot )$ 是一个需要学习的非线性函数。</p>
+<h5 id="高斯混合分布对潜在路线建模"><a href="#高斯混合分布对潜在路线建模" class="headerlink" title="高斯混合分布对潜在路线建模"></a>高斯混合分布对潜在路线建模</h5><p>假设在轨迹数据中有 $C$ 种不同类型的路线， $C$ 是一个超参数，不同类型的路线由不同的语义含义。在模型中用到了两个概率分布：多项式分布和高斯分布。多项式分布 $p_\gamma (c)=Mult(\pi )$，其中 $\pi\in \mathbb{R} ^C$ 是参数，这个分布用来表示某一特定类型的路线被轨迹经过的概率。对于每个类型 $c$ ，高斯分布 $p_\gamma (\mathbf{r} |c)=\mathcal{N} (\mathbf{\mu }_c ,\mathbf{\sigma} _c ^2\mathbf{I}  )$ 表示类型为 $c$ 的一条路线 $\mathbf{r} $ 被轨迹经过的概率，$\gamma =\{\mathbf{\pi}  ,\mathbf{\mu}_c  ,\mathbf{\sigma}_c  \} $ 表示 $p_\gamma (c)$ 和 $p_\gamma (\mathbf{r} |c)$ 所有的参数。因此，潜在路线的向量空间可以表示为 $p_\gamma (\mathbf{r} )=p_\gamma (\mathbf{r} |c)p_\gamma (c)$ 。</p>
+<h5 id="轨迹生成"><a href="#轨迹生成" class="headerlink" title="轨迹生成"></a>轨迹生成</h5><p>接下来，我们需要表示轨迹 $T$ 遵循给定潜在路线 $\mathbf{r} $ 的概率用来异常检测。生成网络用 $p_\theta (T|\mathbf{r} )$ 来表示，$\theta$ 是模型参数的集合。生成的轨迹点 $t_i$ 与潜在路线 $\mathbf{r}$ 和之前的轨迹序列 $t_{&lt;i}$ 有关，其中 $t_{&lt;i}={\{t_1\to t_2 \to … \to t_{i-1}\}}$。因此，通过 $t_i\sim p_\theta (t_i|t_{&lt;i},\mathbf{r} )$ 来生成 $t_i$ ，实现方式为将 $\mathbf{r}$ 和 $t_{&lt;i}={\{t_1\to t_2 \to … \to t_{i-1}\}}$ 编码成隐藏向量 $\mathbf{g} _i \in \mathbb{R} ^k$ ：</p>
+<script type="math/tex; mode=display">
+\mathbf{g} _i=f_2(t_i,\mathbf{g} _{i-1})\quad i=1,2,...,n \quad \mathbf{g} _0=\mathbf{r},</script><p>$f_2$ 是一个非线性函数，这里的嵌入层和推理网络中的相同，对于下标 $i$ ，可以通过多项式分布生成 $t_i$ ：</p>
+<script type="math/tex; mode=display">
+t_i\sim p_\theta (t|t_{<i},\mathbf{r} )=p_\theta (t|\mathbf{g} _{i-1})=Mult( \mathrm{softmax}  (g_2(\mathbf{g} _{i-1})))</script><p>函数 $g_2(\cdot )$ 将 $\mathbf{g} _{i-1}$ 转换为一个 $|\mathcal{G}|$ 维的向量，其中 $|\mathcal{G}|$ 表示所有网格的下标数量。</p>
 
     </div>
 
@@ -311,7 +332,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">问题背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89"><span class="nav-number">2.</span> <span class="nav-text">问题定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GM-VSAE-%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">GM-VSAE 模型</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">问题背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89"><span class="nav-number">2.</span> <span class="nav-text">问题定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GM-VSAE-%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">GM-VSAE 模型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%BD%9C%E5%9C%A8%E8%B7%AF%E7%BA%BF%E6%8E%A8%E7%90%86"><span class="nav-number">3.0.1.</span> <span class="nav-text">潜在路线推理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E5%88%86%E5%B8%83%E5%AF%B9%E6%BD%9C%E5%9C%A8%E8%B7%AF%E7%BA%BF%E5%BB%BA%E6%A8%A1"><span class="nav-number">3.0.2.</span> <span class="nav-text">高斯混合分布对潜在路线建模</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BD%A8%E8%BF%B9%E7%94%9F%E6%88%90"><span class="nav-number">3.0.3.</span> <span class="nav-text">轨迹生成</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
