@@ -1,2 +1,2 @@
-# ChenhaoWang2000.github.io
-personal blog
+# Personal Blog
+https://wangchenhao00.com/
